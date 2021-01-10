@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Solita name app
+    </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="index.ejs"></script>
+</head>
+
+<body style="background-color:powderblue;">
+    <h1 class="text-center display-1">Solita names</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <ul>
+                    <h2>Sorted by amount</h2>
+                    <% for (name of names.sort(sorter("amount")).reverse()) { %>
+                        <li>
+                            <%=name.name %> <b>
+                                    <%=name.amount %>
+                                </b>
+                        </li>
+                        <% } %>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <ul>
+                    <h2>Sorted by name</h2>
+                    <% for (name of names.sort(sorter("name"))) { %>
+                        <li>
+                            <%=name.name %> <b>
+                                    <%=name.amount %>
+                                </b>
+                        </li>
+                        <% } %>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <h2>Sum of names = <%= sum(names) %>
+                </h2>
+                <br> <br>
+                <h3>Search for a specific name</h3>
+                <form action="/" id="nameSearch">
+                    <section>
+                        <label for=" name">Enter name:</label>
+                        <input type="text" name="name" placeholder="name" id="name"
+                            style="background-color:rgb(182, 235, 235);">
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                        <p>
+                            <%= search %>
+                                <b>
+                                    <%=amountBN(search) %>
+                                </b>
+                        </p>
+                    </section>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
